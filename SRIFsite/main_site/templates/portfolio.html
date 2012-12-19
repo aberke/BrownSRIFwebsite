@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block _head %}
+<style type="text/css">
+#splash{
+height: auto;
+}
+h3{
+margin-bottom: 0px;
+padding: 10px 0px;
+}
+#portfolio{
+box-shadow: inset 0px 6px 6px -6px rgba(0, 0, 0, 0.6);
+}
+</style>
+{% endblock %}
+
+{% block _body %}
+	
+<section id="splash">
+	<div id="quote">
+		<h3>What's good for society today will be good for business tomorrow</h3>
+	</div>
+</section>
+
+<section id="portfolio">
+	<h2>Portfolio</h2>
+	<div>
+		<iframe width='100%' height='350' align="middle" frameborder='0' src='https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AnSjVytMbA8vdDJZSmN2bkoxWU1QUUdwcWxDaHUta3c&single=true&gid=26&output=html&widget=true'></iframe>
+	</div>
+</section>
+
+<script type="text/javascript">
+var symbols = ['HPQ', 'NTAP', 'TSLA', 'DPS', 'QCOM', 'INTC', 'VZ', 'BRKb', 'BMY'];
+var exceptions = ['HMC', 'TSL'];
+
+for(i=0; i < symbols.length; i++){
+	$.ajax({
+		url: 'http://dev.markitondemand.com/Api/Quote/jsonp', 
+		data: {symbol: symbols[i]}, 
+		crossDomain: true,
+		dataType: 'jsonp',
+		success: function(data){
+			showPrice(data);
+		}
+
+	});
+}
+
+$('#portfolio').load('https://www.google.com/');
+
+$.ajax({
+	url: 'http://www.google.com/ig/api?stock=HMC',
+	//dataType: 'jsonp',
+	success: function(data){
+		console.log(data);
+	}
+});
+
+
+
+function showPrice(data){
+	console.log(data.Data);
+}
+
+</script>
+{% endblock %}
+
