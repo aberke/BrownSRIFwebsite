@@ -1,12 +1,17 @@
+{% load url from future %}
+
 <!DOCTYPE html>
 <html>	
 <head>
 <title>Brown SRI Fund</title>
-<link rel="shortcut icon" href="/sri/favicon.ico">
+<meta name="authors" content="Alexandra Berke and Gabriel Barth-Maron">
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
-<script type="text/javascript" src="../static/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="../static/styling/js/jquery.easing.1.3.js"></script>
+<!-- <script type="text/javascript" src="styling_files/js/facebook_like.js"></script> -->
+<link rel="stylesheet" href="../static/styling/css/sri_style.css" type="text/css"/>
 
+<!-- For facebook like button: -->
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -15,7 +20,6 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<link rel="stylesheet" href="../static/sri_style2.css" type="text/css"/>
 <script type="text/javascript">
 $(function(){
 	$('ul a').bind('click',function(event){
@@ -28,13 +32,10 @@ $(function(){
 		event.preventDefault();
 	
 	});
-	});
-
-	
+	});	
 </script>
-
+<!-- For Google analytics: -->
 <script type="text/javascript">
-
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-28953916-1']);
   _gaq.push(['_trackPageview']);
@@ -44,8 +45,8 @@ $(function(){
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
+
 {% block _head %} {% endblock %}
 </head>
 
@@ -59,11 +60,11 @@ $(function(){
 	</div></a>
 	<nav>
 		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/education" id="aboutus">Education</a></li>
-			<li><a href="/portfolio">Portfolio</a></li>
-			<li><a href="/guide">Pitch Guide</a></li>
-			<li><a href="/pitches">Stock Pitches</a></li>
+			<li><a href="{% url 'serve_index' %}">Home</a></li>
+			<li><a href="{% url 'serve_portfolio' %}">Portfolio</a></li>
+			<li><a href="{% url 'serve_pitches' %}">Stock Pitches</a></li>
+			<li><a href="{% url 'serve_guide' %}">Pitch Guide</a></li>
+			<li><a href="{% url 'serve_education' %}" id="aboutus">Education</a></li>
 		</ul>
 	</nav>
 </header>

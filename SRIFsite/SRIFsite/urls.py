@@ -4,7 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-import main_site.views
+from main_site import views
 
 urlpatterns = patterns('',
     # Examples:
@@ -18,6 +18,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
 
-    url(r'^portfolio/', main_site.views.server_portfolio),
-    url(r'^$', main_site.views.server_index),
+    url(r'^portfolio/', views.serve_portfolio, name = 'serve_portfolio'),
+    url(r'^education/', views.serve_education, name = 'serve_education'),
+    url(r'^guide/', views.serve_guide, name = 'serve_guide'),
+    url(r'^pitches/', views.serve_pitches, name = 'serve_pitches'),
+    url(r'^pitches/(?P<semester_id>\d+)/', views.serve_pitches_by_id, name = 'serve_pitches_by_id'),
+    url(r'^$', views.serve_index, name = 'serve_index'),
 )

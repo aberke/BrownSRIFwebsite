@@ -13,7 +13,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/alexandraberke/Google Drive/Brown/Projects/SRIF_Website/SRIFsite/srif_database_sqlite.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/Users/alexandraberke/Google Drive/Brown/Projects/BrownSRIFwebsite/SRIFsite/srif_database_sqlite.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -68,6 +68,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/Users/alexandraberke/Google Drive/Brown/Projects/BrownSRIFwebsite/SRIFsite/main_site/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -107,7 +108,17 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/alexandraberke/Google Drive/Brown/Projects/SRIF_Website/SRIFsite/main_site/templates',
+    '/Users/alexandraberke/Google Drive/Brown/Projects/BrownSRIFwebsite/SRIFsite/main_site/templates/html',
+    '/Users/alexandraberke/Google Drive/Brown/Projects/SRIFWebsite/SRIFsite/main_site/templates/admin',
+)
+# added this based on stackoverflow response after having trouble with static file roots
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
 )
 
 INSTALLED_APPS = (
@@ -117,11 +128,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main_site',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'main_site',
+    'django.contrib.admindocs',
 )
 
 # A sample logging configuration. The only tangible logging
