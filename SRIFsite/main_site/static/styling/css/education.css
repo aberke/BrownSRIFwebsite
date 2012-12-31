@@ -1,0 +1,70 @@
+#basics_finance{
+background-color: #F0F0F0;
+box-shadow: inset 0px 6px 6px -6px rgba(0, 0, 0, 0.6)
+}
+
+#basics_finance h2, #basics_sri h2{
+padding-top: 20px;
+}
+
+#basics_finance p, #basics_sri p{
+margin: 0 auto;
+color: black;
+margin-bottom: 20px;
+font-family: Helvetica;
+}
+
+#basics_finance ul, #basics_sri ul{
+list-style: none;
+margin: 0 auto;
+font-family: Helvetica;
+font-size: .9em;
+padding-bottom: 20px;
+-webkit-column-count: 2;
+-moz-column-count: 2;
+column-count: 2;
+height: 111px;
+}
+
+#basics_finance li, #basics_sri li{
+margin-bottom: 10px;
+}
+/**********************/
+#splash{
+height: auto;
+
+}
+h3{
+margin-bottom: 0px;
+padding: 10px 0px;
+}
+
+#wrapping{
+width: 800px;
+margin: 0 auto;
+box-shadow: inset 0px 6px 6px -6px rgba(0, 0, 0, 0.6)
+}
+
+#basics_finance{
+position: relative;
+}
+
+html, body {
+overflow-x: hidden;
+}
+
+#basics_finance:before, #basics_finance:after{
+content: "";
+position: absolute;
+background: #F0F0F0;  /* Match the background */
+top: 0;
+bottom: 0;
+width: 9999px;   /* some huge width */
+box-shadow: inset 0px 6px 6px -6px rgba(0, 0, 0, 0.6)
+}
+#basics_finance:before {
+   right: 100%;
+}
+#basics_finance:after {
+   left: 100%;
+}

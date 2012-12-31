@@ -1,0 +1,42 @@
+#main-content{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#main-content .span4{
+	padding: 10px;
+}
+
+.infoblock h3{
+	text-align: center;
+	color: #3A1E1A;
+}
+.infoblock p{
+	font-weight: bold;
+}
+#main-content .infoblock p a{
+	color: green;
+	font-weight: bold;
+}
+
+#portfolio-img{
+	padding-top: 20px;
+	padding-left: 60px;
+}
+#fb-icon{
+	padding-left: 30px;
+}
+
+#about{
+	background: url("../images/brown_texture.jpg");
+	color: #DED8D8;
+	text-align: center;
+	font-size: 14px;
+	border-top: 2px solid #3A1E1A;
+	padding-left: 200px;
+	padding-right: 200px;
+	padding-bottom: 10px;
+}
+#about h2{
+	color: gray;
+}

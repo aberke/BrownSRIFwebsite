@@ -1,0 +1,62 @@
+#pitches-page{
+	padding: 20px;
+	padding-top: 120px;
+}
+
+#semester-list{
+	padding-top: 30px;
+}
+
+.leaderboard{
+	padding: 40px;
+	padding-top: 0;
+}
+
+.leaderboard h3{
+	text-align: center;
+}
+#pitches-column .pitch-heading-toggle{
+	height: 30px;
+}
+
+.pitch-heading-toggle p, .pitch-heading-toggle h4{
+	float: left;
+	margin: 0;
+}
+.pitch-heading-toggle .pitch-heading-item{
+	float: left;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+}
+.pitch-heading-toggle .span1{
+	padding-left: 0;
+}
+.pitch-heading-toggle .pass-fail{
+	float: right;
+}
+.pitch-heading-toggle .company-name{
+	text-align: center;
+}
+
+.red{
+	color: red;
+}
+.green{
+	color: green;
+}
+
+.vote-table{
+	padding: 40px;
+}
+
+.vote-table h6{
+	padding: 0;
+	margin: 0;
+}
+
+#pitches-column .powerpoint{
+	padding-top: 10px;
+	padding-left: 110px;
+}
+

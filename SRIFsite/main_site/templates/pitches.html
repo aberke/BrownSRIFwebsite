@@ -1,0 +1,96 @@
+{% extends "new_base.html" %}
+
+{% load url from future %}
+
+{% block _head %}
+<link rel="stylesheet" href="{{ STATIC_URL }}styling/css/pitches.css" type="text/css"/>
+{% endblock %}
+
+{% block _body %}
+
+<div id="pitches-page">
+	<div class="container-fluid">  
+	      <div class="row-fluid">  
+	        <div id ="semester-list" class="span2">  
+				<ul class="nav nav-list">  
+					<li class="nav-header">Semester</li>  
+					{% if num_semeters == 0 %}
+						<li> No Semesters </li>
+					{% else %}
+						{% for semester in semesters %}
+							<li{% if semester.pk == selected_semester.pk %} class="active"{% endif %}><a href="{% url 'serve_pitches_by_id' semester.pk %}"> {% if semester.semester == 'S' %}Spring{% else %}Fall{% endif %}  {{semester.year}}</a></li>
+						{% endfor %}
+					{% endif %}
+				</ul>
+			</div> <!-- span2 -->
+			<div class="span10">
+				<div class="leaderboard"> 
+					<h3>{% if selected_semester.semester == 'S' %}Spring{% else %}Fall{% endif %} {{selected_semester.year}} Pitches</h3>
+					{% if selected_semester.num_pitches == 0 %}
+						<p> No Pitches </p>
+					{% else %}
+					     <div class="accordion" id="pitches-column">  
+							{% for pitch in pitches %}
+					            <div id="pitch-container{{ pitch.pk }}" class="accordion-group">  
+					              <div class="accordion-heading">  
+					                <a class="accordion-toggle pitch-heading-toggle" data-toggle="collapse" data-parent="#pitches-column" href="#collapse{{ pitch.pk }}">  
+					                	<div class="pitch-heading-item span3">
+											<p>{{pitch.pitch_date}}</p>
+										</div>
+										<div class="company-name pitch-heading-item span7">
+											<h4> {{pitch.company}} - {{pitch.ticker}}</h4>
+										</div>
+										<div class="pitch-heading-item span1">
+											<p>{% if pitch.buy_sell == 'B' %}Buy{% else %}Sell{% endif %}</p>
+										</div>
+										<div class="pitch-heading-item span1 pass-fail">
+											<p {% if pitch.pass_fail == 'P' %}class="green">Passed{% else %}class="red">Failed{% endif %}</p>
+										</div>
+					                </a>  
+					              </div>  
+					              <div id="collapse{{ pitch.pk }}" class="accordion-body collapse" style="height: 0px; ">  
+					                <div class="accordion-inner">  
+					                	<div class="vote-table span3">
+					                		<table class="table">  
+										        <thead>  
+										        	<tr>  
+										        		<td><h6></h6></td> 
+										            	<td><h6>For</h6></td> 
+										            	<td><h6>Against</h6></td>  
+										         	</tr>  
+										        </thead>  
+										        <tbody>  
+										        	<tr>  
+										            	<td><h6>ESG </h6></td>  
+										            	<td>{{ pitch.ESG_For }}</td>  
+										            	<td>{{ pitch.ESG_Against }}</td>  
+										          	</tr>  
+										          	<tr>  
+										            	<td><h6>Finance</h6></td> 
+										            	<td>{{ pitch.Finance_For }}</td>
+										            	<td>{{ pitch.Finance_Against }}</td>
+										            </tr>
+										        </tbody>
+										    </table>
+										</div> <!-- vote-table -->
+										<div class="span8 powerpoint">
+											<iframe id="pitch_powerpoint" src="https://docs.google.com/presentation/embed?id=1dLmCvaau_9Ams8UVfGWx1_u_YWlstI3zJYaeoZZc5M0&start=false&loop=false&delayms=3000" frameborder="0" width="300" height="200" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+						                </div>
+					                </div>  
+					              </div>  
+					            </div> 
+							{% endfor %}
+						</div> <!-- accordian -->
+					{% endif %}
+				</div> <!-- leaderboard -->
+			</div> <!-- span9 -->
+		</div> <!-- row-fluid -->
+	</div> <!-- container-fluid -->
+</div> <!-- pitches-page -->
+
+<script type="text/javascript" src="{{ STATIC_URL }}bootstrap/docs/assets/js/jquery.js"></script>  
+<script type="text/javascript" src="{{ STATIC_URL }}bootstrap/docs/assets/js/bootstrap-collapse.js"></script>  
+
+
+
+{% endblock %}
