@@ -3,17 +3,17 @@
 	padding: 50px;
 }
 
-#portfolio_title{
+#portfolio-title{
 	padding-bottom: 10px;
 	padding-left: 100px;
 	padding-top: 70px;
 }
 
-#portfolio_title p{
+#portfolio-page p{
 	color: gray;
 	font-weight: bold;
 }
-#portfolio_title h2{
+#portfolio-title h2{
 	color: gray;
 }
 

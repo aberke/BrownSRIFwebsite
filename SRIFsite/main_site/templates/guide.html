@@ -1,255 +1,129 @@
 {% extends "base.html" %}
 
 {% block _head %}
-<script type="text/javascript" src="../static/js/guide_page.js"></script>
-<link rel="stylesheet" href="../static/css/education.css" type="text/css"/>
-<link rel="stylesheet" href="../static/css/guide.css" type="text/css"/>
+<!-- style sheet shared with education page -->
+<link rel="stylesheet" href="{{ STATIC_URL }}styling/css/education.css" type="text/css"/>
 {% endblock %}
 
 {% block _body %}
 
-<section id="splash">
-	<div id="quote">
-		<h3>What's good for society today will be good for business tomorrow</h3>
-	</div>
-</section>
+<div id="guide-page">
+	<div class="container-fluid"> 
+		<div id="guide-header">
+			<h3>Designing a Pitch</h3>
+		</div>  
+		<div id="content-container">
+     	{% for item in items %}
+     		{% if item.collapsed %}  
+	    	<div class="accordion" id="accordion-wrapper{{ item.pk }}">
+	            <div class="item-group accordion-group">  
+	            	<div class="item-heading accordion-heading">  
+	                	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-wrapper" href="#collapse{{ item.pk }}">  
+	                  		<h3>{{ item.header }}</h3>
+	                	</a>  
+	              	</div>  <!-- item-heading -->
+		            <div id="collapse{{ item.pk }}" class="item accordion-body collapse" style="height: 0px; ">  
+		                <div class="accordion-inner item-body-outer">  
+		                	<div class="item-body-inner">
+		                  		{% for p in item.paragraph_set.all %}
+		                  			<div class = "item-paragraph">
+		                  				{% if p.header %}
+		                  					<h4 class="item-paragraph-header">{{paragraph.header}}</h4>
+		                  				{% endif %}
+		                  				<div class="item-paragraph-body">
+		                  					{{ p.body }}
+		                  				</div>
+										<ul class="item-paragraph-links">
+					                  		{% if p.link_1_URL %}
+					                  		<li class="item-paragraph-link"><a href="{{ p.link_1_URL }}">
+					                  			{% if p.link_1_text %}{{ p.link_1_text }}{% else %}{{ p.link_1_URL }}{% endif %}
+					                  		</a></li>
+					                  		{% endif %}
+					                  		{% if p.link_2_URL %}
+					                  		<li class="item-paragraph-link"><a href="{{ p.link_2_URL }}">
+					                  			{% if p.link_2_text %}{{ p.link_2_text }}{% else %}{{ p.link_2_URL }}{% endif %}
+					                  		</a></li>
+					                  		{% endif %}	
+					                  		{% if p.link_3_URL %}
+					                  		<li class="item-paragraph-link"><a href="{{ p.link_3_URL }}">
+					                  			{% if p.link_3_text %}{{ p.link_3_text }}{% else %}{{ p.link_3_URL }}{% endif %}
+					                  		</a></li>
+					                  		{% endif %}
+					                  		{% if p.link_4_URL %}
+					                  		<li class="item-paragraph-link"><a href="{{ p.link_4_URL }}">
+					                  			{% if p.link_4_text %}{{ p.link_4_text }}{% else %}{{ p.link_4_URL }}{% endif %}
+					                  		</a></li>
+					                  		{% endif %}		
+					                  		{% if p.link_5_URL %}
+					                  		<li class="item-paragraph-link"><a href="{{ p.link_5_URL }}">
+					                  			{% if p.link_5_text %}{{ p.link_5_text }}{% else %}{{ p.link_5_URL }}{% endif %}
+					                  		</a></li>
+					                  		{% endif %}	       
+					                  	</ul>
+		                  			</div>
+		                  		{% endfor %}
+		                  	</div>
+		                </div>  <!-- item body outer -->
+		            </div>  <!-- item -->
+		        </div> <!-- item-group -->
+		    </div> <!-- accordion -->
+	        {% else %}
+	        <div class="non-accordion">
+	            <div class="item-group">
+	            	<div class="item-heading">
+	            		<h3>{{ item.header }}</h3>
+	            	</div>
+	            	<div class="item">
+	            		<div class="item-body-inner">
+	            			{% for p in item.paragraph_set.all %}
+	                  			<div class = "item-paragraph">
+	                  				{% if p.header %}
+	                  					<h4 class="item-paragraph-header">{{paragraph.header}}</h4>
+	                  				{% endif %}
+	                  				<div class="item-paragraph-body">
+	                  					{{ p.body }}
+	                  				</div>
+									<ul class="item-paragraph-links">
+				                  		{% if p.link_1_URL %}
+				                  		<li class="item-paragraph-link"><a href="{{ p.link_1_URL }}">
+				                  			{% if p.link_1_text %}{{ p.link_1_text }}{% else %}{{ p.link_1_URL }}{% endif %}
+				                  		</a></li>
+				                  		{% endif %}
+				                  		{% if p.link_2_URL %}
+				                  		<li class="item-paragraph-link"><a href="{{ p.link_2_URL }}">
+				                  			{% if p.link_2_text %}{{ p.link_2_text }}{% else %}{{ p.link_2_URL }}{% endif %}
+				                  		</a></li>
+				                  		{% endif %}	
+				                  		{% if p.link_3_URL %}
+				                  		<li class="item-paragraph-link"><a href="{{ p.link_3_URL }}">
+				                  			{% if p.link_3_text %}{{ p.link_3_text }}{% else %}{{ p.link_3_URL }}{% endif %}
+				                  		</a></li>
+				                  		{% endif %}
+				                  		{% if p.link_4_URL %}
+				                  		<li class="item-paragraph-link"><a href="{{ p.link_4_URL }}">
+				                  			{% if p.link_4_text %}{{ p.link_4_text }}{% else %}{{ p.link_4_URL }}{% endif %}
+				                  		</a></li>
+				                  		{% endif %}		
+				                  		{% if p.link_5_URL %}
+				                  		<li class="item-paragraph-link"><a href="{{ p.link_5_URL }}">
+				                  			{% if p.link_5_text %}{{ p.link_5_text }}{% else %}{{ p.link_5_URL }}{% endif %}
+				                  		</a></li>
+				                  		{% endif %}	       
+				                  	</ul>
+	                  			</div>
+	                  		{% endfor %}
+	                  	</div>
+		            </div>
+		        </div>
+		    </div> <!-- non-accordion -->
+            {% endif %}
+        {% endfor %}
+        </div>  <!-- content-container -->
+    </div> <!-- container-fluid -->
+</div> <!-- education page -->
 
-
-
-<div id="wrapped">
-<section class="choosing">
-<h2>Choosing a Stock</h2>
-<p>You can find potential investments in any number of places -- a couple ideas are explained at length below. As you use them, here's advice on how to manage your search:</p>
-<ol>
-	<li> Keep Track of What You Find
-			<p>By far the easiest way to do this is to <a href="#">set up a portfolio in Google Finance</a>. Your Gmail@Brown account should work for this, and once you've logged in and created a basic portfolio, you can add any stock you find to it pretty easily, and quickly see basic info on any company.</p>
-	</li>
-	<li> Conduct Some Basic Research To Narrow Down the List
-			<p>Check out Financial Data Aggregator sites and Company Profiles on the <a href="#">Research Page</a></p>
-	</li>
-	<li> Look Closer at The Stocks that Remain
-			<p>Check out News Sources, SEC Filings, ESG Advocacy Groups, and Industry Reports on the <a href="#">Research Page</a>.</p>
-	</li>
-	<li> Choose A Few You Like Best, and Talk to Your Sector Manager
-			<p>Often we'll have concerns broader than whether a particular stock sounds interesting -- for example, if we're already invested in another company in the same industry, we may want to branch out.</p>
-			<ul>
-				<li>Energy & Utilities, Manufacturing & Industrial Goods, Green Technology, Transportation, Food -- Environmental</li>
-				<li>Education, Healthcare, Science & Technology, Consumer Goods -- Social</li>
-				<li>Finance and Banking, Retail, Media, IT -- Governance</li>
-			</ul>
-	</li>
-</section>
-</div>
-
-<section id="methods">
-<div class="wrapper">
-	<div class="method">
-	<h4>Method #1: Choose an Industry and Go From There</h4>
-
-	</div>
-<div class="method">
-	<h4>Method #2: Steal from the Pros</h4>
-		</div>
-<div class="method">
-	<h4>Method #3: Check the News</h4>
-	</div>
- <a href="http://www.google.com/finance/stockscreener" class="link"><div class="method">
-	<h4>Method #4:Google Stock Screener</h4>
-	<p>We don't recommend this unless you're really into finance, but there are definitely people out there who love it...</p>
-	</div></a>
-</div>
-
-<div class="hide" id="hide1">
-	<p>Check out a list of industries, and look at the stocks available within the ones you're interested in. Good lists are:</p>
-	<ul>
-		<li><a href="http://biz.yahoo.com/ic/ind_index.html">Yahoo</a></li>
-		<li><a href="http://www.investorguide.com/industry-list.php">Investorguide.com</a></li>
-	</ul>
-</div>
-<div class="hide" id="hide2">
-		<p>Many SRI Mutual Funds list their major holdings pretty prominently on their websites. Take a look at these lists, and see if any companies pop out that interest you. Good sources are:</p>
-	<ul>
-		<li><a href="https://www.expertplan.com/socialkpartners.jsp">Social(k)</a>, a sort of clearinghouse for SRI mutual funds. It has a great list of fund providers with direct links to the screening criteria and investment philosophy of each.</li>
-		<li><a href="http://www.investorguide.com/industry-list.php">Investorguide.com</a></li>
-	</ul>
-</div>
-<div class="hide" id="hide3">
-<p>Many SRI Mutual Funds list their major holdings pretty prominently on their websites. Take a look at these lists, and see if any companies pop out that interest you. Check out News Sources on the Research Page for suggestions, or look at the SRI News section of our site.</p>
-
-</div>
-</section>
-
-<!-- Choosing a stock -->
-<div id="wrapped">
-<section class="choosing" class="noshadow">
-<h2>Conducting research</h2>
-<p>Note 1: Where applicable, the links on this page are to sources relevant to Microsoft (MSFT), so that you can compare different resources easily
-</p>
-<p>Note 2: To use a Brown library source from off campus, go <a href="http://library.brown.edu/">here</a> or click "Off-Campus Access" at the top of any library page</p>
-<ul>
-	<li> Financial Aggregator Sites
-			<p>When you want to check out a company, the first place you'll go is generally one of the many Financial Data Aggregator sites that have sprung up in recent years. They all draw data from pretty much the same places, and most offer portfolio-building and tracking as well, so just try a couple and pick the one you like best.</p>
-			<ul>
-				<li><a href="http://www.google.com/finance?q=msft">Google Finance</a></li>
-				<li><a href="http://finance.yahoo.com/q?s=msft">Yahoo! Finance</a></li>
-				<li><a href="http://quote.morningstar.com/stock/s.aspx?pgid=hetopquote&t=msft">Morningstar</a></li>
-				<li><a href="http://investing.money.msn.com/investments/stock-price?Symbol=msft&getquote=Get%20Quote">MSN Money</a></li>
-			</ul>
-	</li>
-	<li> Company Profiles
-		<ul>
-			<li><a href="http://www.reuters.com/finance/stocks/companyProfile?symbol=MSFT.O">Reuters</a> has good, bare-bones descriptions of any publicly traded company</li>
-			<li><a href="http://en.wikipedia.org/wiki/Microsoft">Wikipedia</a> isn't professional, but almost every time it'll tell you what you need to know for a basic overview</li>
-			<li>The Company's Own Website will give you a rosy but generally clear picture
-				<ul>
-					<li>"About Us", "Investor Relations", and "Media Relations" are good places to look for basic info</li>
-					<li>You'll generally find a section on "Corporate Citizenship", "Corporate Responsibility", or "CSR", which will give you the company's portrayal of its ESG policies. Look for hard facts, not platitudes -- and make sure this isn't the only place you get your data.</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-	<li> News Sources
-			<p>Searching the financial press will give you unbiased information on a company, and is a good place to look for analyst opinions, ESG-related scandals, and recent news. There are two key places to go:</p>
-		<ul>
-			<li><a href="http://topics.nytimes.com/top/news/business/companies/microsoft_corporation/index.html">The New York Times</a>, which is actually great for this sort of thing. Clicking on "Business" at the top and searching for your company will usually bring up a special page with past articles and other info -- and even if there isn't a specific resources page, you can still look through the archives (all of which are free).</li>
-			<li><a href="http://online.wsj.com/home-page">The Wall Street Journal</a>, which unfortunately you have to access through ProQuest, a service provided by our library. There's so much news available, though, that often the important things can get buried in a ton of minor details. Restrict your date range to the past two years and sort by relevance -- it'll help you get at the meaningful stuff.</li>
-			<li><a href="http://news.google.com/news/search?pz=1&cf=all&ned=us&hl=en&q=microsoft&cf=all&as_qdr=m&as_drrb=q">Google News</a> is also a fine place to go.</li>
-		</ul>
-	</li>
-	<li> SEC Filings
-			<h4>What they are:</h4>
-			<p>All corporations listed on U.S. stock exchanges must file documents at set intervals with the Securities and Exchange Commission. They're not quite what you'd expect from a regulatory filing: most are well-written and pretty well-organized after all, they're read by potential investors but they also have a wealth of information about the companies. (They have to, by law.)</p>
-			<p>These are the core source of data for any presentation you'll do.</p>
-			<h4>Where to find them:</h4>
-			<ul>
-				<li><a href="http://www.sec.gov/edgar/searchedgar/companysearch.html">The SEC's EDGAR search engine</a> - search by company name or (even better) stock ticker. The formatting's kind of shitty and you have to scroll through a list of a lot of arcane documents you'd never want to see, but you can see them in HTML or download them as PDF's, which is convenient.</li>
-				<li><a href="http://quicktake.morningstar.com/StockNet/SECDocuments.aspx?Country=USA&Symbol=MSFT">Morningstar</a> - search for a company, then click "SEC Filings" on the left-hand dashbar for a full list that you can download in classy PDF formats. You'll find 10-K's under "Financials" and DEF-14's under "Proxy".</li>
-			</ul>
-			<h4>Types You'll Need:</h4>
-			<ul>
-				<li><strong>Annual Reports</strong>
-					<p>The <strong>10-K</strong> (or "annual report") is filed once a year. It has all of the company's financial data (anything you see on a finance website comes from this), but it also has a ton more information: management comments on strategy, performance, and future outlook; competitor and market analysis; and if you dig deep enough information on social and environmental policies, legal and tax problems (including environmental cleanup liabilities), charitable giving and a lot more. The best way to get a sense of these for yourself is to read one. A good example is <a href="http://www.sec.gov/Archives/edgar/data/40545/000004054509000012/frm10k.htm">General Electric's</a>. Take note of the environmental cleanup liabilities listed and the statistics on unionization of GE's workforce, among other things. Read more about the parts of a report and how to read one at <a href="http://en.wikipedia.org/wiki/Form_10-K">Wikipedia</a>.</p>
-				</li>
-				<li>
-					<strong>Proxy Statements</strong>
-					<p>The DEF-14 [A or B] ("proxy statement") is sent to shareholders and the SEC each year before the company's annual meeting. It details all pending proxy resolutions (and provides instructions for submitting ones in the future) as well as information on executive compensation, board member/management conflicts of interest, and the composition and operating rules of the board of directors. A fun example is <a href="http://www.sec.gov/Archives/edgar/data/97476/000120677409000412/texasinstrument_def14a.htm">Texas Instruments' most recent filing</a>. Take note of the very transparent executive compensation section, and the fact that a key board member is (*drumroll*) Ruth Simmons, who chairs the Governance and Shareholder Relations Committee. If you read the "discussion" of the main corporate governance-related proxy resolution up for a vote, you'll see it reads just like the e-mails she sends out to us. </p>
-				</li>
-				<li>
-					<strong>Other Forms</strong>
-					<p>10-Q forms ("Quarterly Reports") are shorter and less detailed than 10-K's but contain similar information, and are filed four times each year. 8-K ("Current Report") forms are filed whenever something noteworthy happens to a company, like an acquisition, a major discovery of natural resources, or a federal legal action taken against it. 20-F forms are like 10-K's for foreign companies, though they're organized slightly differently</p>
-				</li>
-			</ul>
-	</li>
-	<li> ESG Advocacy Groups
-		<p>Read ESGnews (much of it negative) and pull companies' own CSR reports at <a href="http://www.socialfunds.com/csr/index.cgi">SocialFunds.com's Corporate Research page</a></p>
-		
-	</li>
-	<li> Analyst Reports
-		<ul>
-			<li><strong>Industry Reports</strong>
-				<p>The best service we have for these is IBISWorld, which is accessible from the <a href="http://dl.lib.brown.edu/gateway/econdata/index.php">Brown Library's Economics and Financial Data resources page</a>. It has pretty good reports on almost every industry we'll be investing in from "Hydroelectric & Renewable Power Generation" to "Test Development and Educational Support Services", and I'd highly recommend using these as your go-to source for your own industry research. The reports on specific companies have nothing other than basic SEC data, though, so ignore them.</p>
-			</li>
-			<li><strong>Company Reports</strong>
-				<p>Company reports written by specific analysts aren't something we should rely on a ton, but we can ask the Investment Office to pull them for us on occasion. For large companies in well-documented industries, they won't be as necessary; but if we're ever considering investments in industries we can't find much data on, they'll be great.  Once a potential investment has cleared the initial report, you can ask us and we'll email the Investment Office to get one.</p>
-			</li>
-		</ul>
-	</li>
-	<li> Government and Legislative Info
-		<ul>
-			<li><strong>Legislation</strong>
-				<div>
-					<p>To monitor progress on specific bills in Congress:</p>
-					<p>Visit the National Journal (log-in through Brown Library ejournals) --> CongressDaily --> <a href="http://www.nationaljournal.com/congressdaily/markupreports.php">Mark Up Reports</a> or run a search</p>
-				</div>
-				<div>
-					<p>To read the full text or summary of a bill:</p>
-					<p><a href="http://thomas.loc.gov/home/thomas.php">THOMAS</a> database is the official catalog of all things legislative. </p>
-				</div>
-				<div>
-				<p>To follow general action in Congress:</p>
-				<p>Search the company or industry you're screening on National Journal or Roll Call, two reliable, generally nonpartisan sources. Obviously, checking out major national newspapers is also a great way to go.</p>
-				</div>
-			</li>
-			<li><strong>Lobbying</strong>
-				<p>OpenSecrets has the most comprehensive and easy-to-navigate information. Check their <a href="http://www.opensecrets.org/lobby/">Lobbying Database</a>.</p>
-			</li>
-			<li><strong>Fundraising</strong>
-				<p>The FEC has the most official and up-to-date information. You can search for <a href="http://www.fec.gov/finance/disclosure/advindsea.shtml">individual contributions</a> based on the individual's employer (useful for CEOs), or by a variety of other criteria.</p>
-				<p>If you know that your company's leadership, or an industry organization it belongs to, has established a Political Action Committee (PAC), you can also search for contributions the PAC has made on <a href="http://www.opensecrets.org/pacs/index.php">OpenSecrets</a> or the FEC website.</p>
-			</li>
-		</ul>
-	
-	</li>
-</ul>
-</section>
-
-<!-- Environmental -->
-<section class="choosing" class="noshadow">
-	<h2>Environmental</h2>
-	<p>Corporate Environmental Policy</p>
-	<ul>
-		<li>Q: Does the company have a written environmental policy?</li>
-		<li>Q: Does the environmental policy specify goals or only a general commitment to environmental friendliness?</li>
-		<li>Q: Does the company have any affilitations with pro-environment groups?</li>
-		<li>Q: Has the company been recognized as environmentally friendly by a third-party entity?</li>
-		<li>Q: Does management promote green infrastructure?</li>
-		<li>Q: Does the company's environmental policy have substance or does it appear as purely a PR effort? (Greenwashing)</li>
-	</ul>
-	<p>Energy Use and Efficiency</p>
-	<ul>
-		<li>Q: What is the magnitude of the company's energy use? How does this magnitude compare to its competitors?</li>
-		<li>Q: What percentage of company's energy comes from renewable sources?</li>
-		<li>Q: Are the company's buildings LEED certified? </li>
-		<li>Q: Does the company have a large portion of its energy use associated with transportation?</li>
-	</ul>
-	<p>Waste Generation, Disposal, and Recycling</p>
-	<ul>
-		<li>Q: What is the magnitude of the company's waste generation? Relative to competitors?</li>
-		<li>Q: What is the magnitude of the company's recycling? Relative to competitors?</li>
-		<li>Q: What methods of waste disposal are currently implemented? Implications of these methods?</li>
-		<li>Q: Does the company have any commitments to reducing waste? Success of prior commitments?</li>
-	</ul>
-	<p>Water and Air Pollution (non-GHG)</p>
-	<ul>
-		<li>Q: Does the company have any record of intentionally or accidentally polluting water supplies?</li>
-		<li>Q: If so, what mitigation measures were taken to remedy the pollution?</li>
-		<li>Q: Do the company's operations result in the alteration of surrounding ecosystems?</li>
-		<li>Q: If so, what sort of desalination measures (or otherwise) have been put in place?</li>
-		<li>Q: Do the company's operations result in the emission of any non-GHG air pollutant?</li>
-		<li>Q: If so, how toxic are those pollutants? Meaningful environmental impact? What were past mitigation measures?</li>
-	</ul>
-	<p>Greenhouse Gases and Global Warming</p>
-	<ul>
-		<li>Q: Does the company make any effort to evaluate/measure their GHG emissions?</li>
-		<li>Q: If so, is the company aware of the associated potential exposure risk (i.e. CO2) if aggressive climate legislation is passed?</li>
-		<li>Q: Does the company have any stated goals of GHG emission reduction?</li>
-		<li>Q: Has the company taken any steps in the past to reduce GHG emissions?</li>
-		<li>Q: Does the company have any formal partnerships with GHG emission reduction entities (i.e. EPA Climate Leaders)?</li>
-	</ul>
-	<p>Land Use</p>
-	<ul>
-		<li>Q: Does the company have a record of developing previously undeveloped land?</li>
-		<li>Q: Has the company developed on or attempted to develop on protected lands (i.e. wetlands, nature reserves, etc.) ?</li>
-		<li>Q: Is the company a member or affilitate of any land-preservation entity?</li>
-	</ul>
-	<p>Nuclear/Coal/Oil</p>
-	<ul>
-		<li>Q: Does the company heavily rely on any of these sources of energy? Magnitude of reliance?</li>
-		<li>Q: Is the company financially/structurally tied to any of these industries (i.e. corporate executives in common)?</li>
-	</ul>
-	<p>Political Lobbying</p>
-	<ul>
-		<li>Q: Does the company have a record of fighting environmental regulation?</li>
-		<li>Q: Has the company been involved in any legal proceedings of an environmental nature?</li>
-		<li>Q: What is the company's stance on emission caps?</li>
-	</ul>
-	<p>Outputs/Products</p>
-	<ul>
-		<li>Q: Broadly speaking, are the company's products of an environmentally friendly nature (i.e. hybrid cars)?</li>
-		<li>Q: Does the company make any effort to identify the CO2 emissions associated with individual products?</li>
-		<li>Q: Have the company's products ever been shown to be detrimental to the environment, including human health?</li>
-	</ul>
-</section>
-</div>
+<!-- Need jquery and boostrap javascript for the collapsing -->
+<script type="text/javascript" src="{{ STATIC_URL }}bootstrap/docs/assets/js/jquery.js"></script>  
+<script type="text/javascript" src="{{ STATIC_URL }}bootstrap/docs/assets/js/bootstrap-collapse.js"></script>  
 
 {% endblock %}

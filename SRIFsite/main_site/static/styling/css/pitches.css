@@ -1,21 +1,61 @@
 #pitches-page{
 	padding: 20px;
 	padding-top: 120px;
+	background: url("../images/brown_texture.jpg");
 }
-
+/*********** Semester List ************/
 #semester-list{
 	padding-top: 30px;
 }
+#semester-list .nav-list li > a, #semester-list .nav-list .no-semesters{
+	color: #999999;
+	text-shadow: none;
+	font-size: 16px;
+}
+#semester-list .nav-list > .active > a{
+	background-color: #3A1E1A;
+	color: #999999;
+	text-shadow: none;
+	font-size: 16px;
+}
+#semester-list-header{
+	color: #69AA35;
+	font-size: 18px;
+	text-shadow: none;
+}
 
+/**************** Pitches Column ****************/
 .leaderboard{
 	padding: 40px;
 	padding-top: 0;
 }
-
+.leaderboard .accordion-group{
+	margin-bottom: 5px;	
+	border: none;
+	color: gray;
+	border: 1px solid #6B4226;
+}
+.leaderboard .accordion-group .accordion-heading{	
+	background-color: #3A1E1A;
+	/*border: 1px solid #6B4226;*/
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+.leaderboard .accordion-body{
+	border-top: 1px solid #6B4226;
+}
+#pitches-column a{
+	color: gray;
+}
+#pitches-column a h4{
+	color: #999999;
+}
 .leaderboard h3{
+	color: gray;
 	text-align: center;
 }
 #pitches-column .pitch-heading-toggle{
+	padding-top: 12px;
 	height: 30px;
 }
 
@@ -43,11 +83,14 @@
 	color: red;
 }
 .green{
-	color: green;
+	color: #69AA35;
 }
-
+#pitches-column .accordion-inner{
+	border: none;
+}
 .vote-table{
 	padding: 40px;
+	padding-left: 100px;
 }
 
 .vote-table h6{

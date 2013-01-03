@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^portfolio/', views.serve_portfolio, name = 'serve_portfolio'),
     url(r'^education/', views.serve_education, name = 'serve_education'),
     url(r'^guide/', views.serve_guide, name = 'serve_guide'),
-    url(r'^pitches/', views.serve_pitches, name = 'serve_pitches'),
     url(r'^pitches/(?P<semester_id>\d+)/', views.serve_pitches_by_id, name = 'serve_pitches_by_id'),
+    url(r'^pitches/', views.serve_pitches, name = 'serve_pitches'),
     url(r'^$', views.serve_index, name = 'serve_index'),
 )

@@ -1,4 +1,4 @@
-{% extends "new_base.html" %}
+{% extends "base.html" %}
 
 {% load url from future %}
 
@@ -13,9 +13,9 @@
 	      <div class="row-fluid">  
 	        <div id ="semester-list" class="span2">  
 				<ul class="nav nav-list">  
-					<li class="nav-header">Semester</li>  
-					{% if num_semeters == 0 %}
-						<li> No Semesters </li>
+					<li id="semester-list-header" class="nav-header">Semester</li>  
+					{% if not semesters %}
+						<li class="no-semesters"> No Semesters </li>
 					{% else %}
 						{% for semester in semesters %}
 							<li{% if semester.pk == selected_semester.pk %} class="active"{% endif %}><a href="{% url 'serve_pitches_by_id' semester.pk %}"> {% if semester.semester == 'S' %}Spring{% else %}Fall{% endif %}  {{semester.year}}</a></li>
@@ -37,14 +37,17 @@
 					                	<div class="pitch-heading-item span3">
 											<p>{{pitch.pitch_date}}</p>
 										</div>
+										<div class="company-ticker pitch-heading-item span1">
+											<h4>{{pitch.ticker}}</h4>
+										</div>
 										<div class="company-name pitch-heading-item span7">
-											<h4> {{pitch.company}} - {{pitch.ticker}}</h4>
+											<h4>{{pitch.company}}</h4>
 										</div>
 										<div class="pitch-heading-item span1">
 											<p>{% if pitch.buy_sell == 'B' %}Buy{% else %}Sell{% endif %}</p>
 										</div>
 										<div class="pitch-heading-item span1 pass-fail">
-											<p {% if pitch.pass_fail == 'P' %}class="green">Passed{% else %}class="red">Failed{% endif %}</p>
+											<p {% if pitch.passed %}class="green">Passed{% else %}class="red">Failed{% endif %}</p>
 										</div>
 					                </a>  
 					              </div>  
@@ -74,7 +77,14 @@
 										    </table>
 										</div> <!-- vote-table -->
 										<div class="span8 powerpoint">
-											<iframe id="pitch_powerpoint" src="https://docs.google.com/presentation/embed?id=1dLmCvaau_9Ams8UVfGWx1_u_YWlstI3zJYaeoZZc5M0&start=false&loop=false&delayms=3000" frameborder="0" width="300" height="200" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+											{% if pitch.url_Snippet %}
+												<iframe src="https://docs.google.com/presentation/embed?id={{ pitch.url_Snippet }}&start=false&loop=false&delayms=3000" frameborder="0" width="270" height="210" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+											{% elif pitch.embed_Iframe_Text %}			
+												{{ pitch.embed_Iframe_Text|safe }}
+											{% else %}
+												<h5>No Slides Available</h5>
+											{% endif %}
+											<style> iframe [Attributes Style]{ width: 300; height: 200;} </style>
 						                </div>
 					                </div>  
 					              </div>  

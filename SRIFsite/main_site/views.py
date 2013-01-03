@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 
 from django.shortcuts import render_to_response, render
 
-from models import Stock, Pitch, Pitch_By_Semester
+from models import Stock, Pitch, SemesterPitch, EducationPageSection, GuidePageSection
 
 def serve_index(request):
 	return render(request, "home.html",{'page':'index'})
@@ -23,11 +23,13 @@ def serve_portfolio(request):
 
 
 def serve_education(request):
-	return render(request, 'education.html', {'page':'education'})
+	items = EducationPageSection.objects.all()
+	return render(request, 'education.html', {'page':'education', 'items': items})
 
 
 def serve_guide(request):
-	return render(request, 'guide.html', {'page':'guide'})
+	items = GuidePageSection.objects.all()
+	return render(request, 'guide.html', {'page':'guide', 'items': items})
 
 
 def serve_pitches(request):
@@ -35,22 +37,20 @@ def serve_pitches(request):
 	return serve_pitches_by_id(request, -1)
 
 def serve_pitches_by_id(request, semester_id):
-	semesters = Pitch_By_Semester.objects.all().order_by('-year')
-	num_semesters = len(semesters)
-	if num_semesters == 0:
-		context = {'num_semesters': 0}
-		return render(request, 'pitches.html', context)
+	semesters = SemesterPitch.objects.all().order_by('-year')
+	if len(semesters) == 0:
+		return render(request, 'pitches.html', {'page':'pitches'})
 	else:
 		# if no semester specified, take most recent semester
 		if semester_id < 0:
 			selected_semester = semesters[0]
 		else:
 			try:
-				selected_semester = Pitch_By_Semester.objects.get(pk=semester_id)
-			except Pitch_By_Semester.DoesNotExist:
+				selected_semester = SemesterPitch.objects.get(pk=semester_id)
+			except SemesterPitch.DoesNotExist:
 				raise Http404
 		pitches = selected_semester.pitch_set.all().order_by('pitch_date')
-		context = {'page':'pitches', 'num_semesters': num_semesters, 'semesters': semesters, 'selected_semester': selected_semester, 'pitches': pitches}
+		context = {'page':'pitches', 'semesters': semesters, 'selected_semester': selected_semester, 'pitches': pitches}
 		return render(request, 'pitches.html', context)
 
 
