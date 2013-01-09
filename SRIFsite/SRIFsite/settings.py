@@ -1,5 +1,7 @@
 # Django settings for SRIFsite project.
 
+import dj_database_url
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -20,6 +22,7 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+DATABASES['default'] =  dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -69,6 +72,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/Users/alexandraberke/Google Drive/Brown/Projects/BrownSRIFwebsite/SRIFsite/main_site/static',
+    '/Users/alexandraberke/Google Drive/Brown/Projects/SRIFWebsite/SRIFsite/main_site/templates/admin',
 )
 
 # List of finder classes that know how to find static files in
@@ -108,7 +112,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/alexandraberke/Google Drive/Brown/Projects/BrownSRIFwebsite/SRIFsite/main_site/templates/html',
+    '/Users/alexandraberke/Google Drive/Brown/Projects/BrownSRIFwebsite/SRIFsite/main_site/templates',
     '/Users/alexandraberke/Google Drive/Brown/Projects/SRIFWebsite/SRIFsite/main_site/templates/admin',
 )
 # added this based on stackoverflow response after having trouble with static file roots
@@ -122,13 +126,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 INSTALLED_APPS = (
+    'main_site',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_site',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

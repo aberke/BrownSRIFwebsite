@@ -87,6 +87,10 @@ class PageSection(models.Model):
  	def __unicode__(self):
  		return str(self.header)
 
+ 	def num_paragraphs(self):
+ 		return self.paragraph_set.count()
+ 	num_paragraphs.short_description = "Number of paragraphs under section"
+
 class Paragraph(models.Model):
 	item = models.ForeignKey(PageSection)
 	header = models.CharField(max_length=3000)

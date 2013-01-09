@@ -38,12 +38,12 @@
 .item-paragraph-links li > a{
 	color: #C00404;
 }
-#education-page #content-container h3{
+#content-container h3{
 	color: black;
 }
-#education-page .accordion{
+#education-page .accordion, #guide-page .accordion{
 	margin: 0;
 }
-#education-page .non-accordion{
+#education-page .non-accordion, #guide-page .non-accordion{
 	padding-bottom: 10px;
 }

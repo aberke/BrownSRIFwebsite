@@ -74,7 +74,7 @@ class Paragraph_Admin(admin.StackedInline):
 		]
 
 class PageSection_Admin(admin.ModelAdmin):
-	list_display = ('header',)
+	list_display = ('header','num_paragraphs')
 	fieldsets =[
 		('Page Section', {'fields':['header','collapsed',],
 					'description': 'Provide a header for this section and provide paragraph(s) below.  You can choose to have this section be collapsible.'
