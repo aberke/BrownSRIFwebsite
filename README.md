@@ -11,5 +11,4 @@ the club's administrators could easily update the website without much web knowl
 Visit the site at: www.brownsrif.org
 
 
-Gabriel (fastturtle) and I, gathered the static html files he had previously written.
-We used Django to create a new website.
+My friend and peer at Brown, Gabriel (git account: fastturtle), helped me use Django and deploy to Heroku. 
